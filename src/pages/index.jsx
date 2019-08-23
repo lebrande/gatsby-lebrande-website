@@ -1,21 +1,76 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link, graphql } from 'gatsby';
+import Img from 'gatsby-image';
 
 import Layout from '../components/Layout/Layout';
-import Image from '../components/Image/Image';
 import SEO from '../components/Seo/Seo';
 
-const IndexPage = () => (
+const IndexPage = ({
+  data: {
+    allMarkdownRemark: {
+      edges,
+    },
+  },
+}) => (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
+    {edges.map(({
+      node: {
+        id,
+        excerpt,
+        frontmatter: {
+          date,
+          title,
+          path,
+          featuredImage: {
+            childImageSharp,
+          },
+        },
+      },
+    }) => (
+      <div key={id}>
+        <Img {...childImageSharp} />
+        <Link to={path}>
+          <h2>
+            {title}
+          </h2>
+        </Link>
+        <p>{date}</p>
+        <p>{excerpt}</p>
+      </div>
+    ))}
   </Layout>
 );
 
 export default IndexPage;
+
+export const pageQuery = graphql`
+  query IndexQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+    allMarkdownRemark {
+      edges {
+        node {
+          frontmatter {
+            date(locale: "pl")
+            title
+            path
+            featuredImage {
+              childImageSharp {
+                fluid(maxWidth: 500, maxHeight: 300) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+          excerpt
+          id
+        }
+      }
+    }
+  }
+`
+
