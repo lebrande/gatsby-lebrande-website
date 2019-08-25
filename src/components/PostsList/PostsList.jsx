@@ -32,36 +32,34 @@ const PostsList = () => {
   `);
 
   const {
-    allMarkdownRemark: {
-      edges,
-    },
+    allMarkdownRemark: { edges },
   } = data;
 
   return (
     <div className="posts-list">
-      {edges.map(({
-        node: {
-          id,
-          excerpt,
-          frontmatter: {
-            date,
-            title,
-            path,
-            featuredImage: {
-              childImageSharp,
+      {edges.map(
+        ({
+          node: {
+            id,
+            excerpt,
+            frontmatter: {
+              date,
+              title,
+              path,
+              featuredImage: { childImageSharp },
             },
           },
-        },
-      }) => (
-        <PostsListItem
-          key={id}
-          childImageSharp={childImageSharp}
-          path={path}
-          title={title}
-          date={date}
-          excerpt={excerpt}
-        />
-      ))}
+        }) => (
+          <PostsListItem
+            key={id}
+            childImageSharp={childImageSharp}
+            path={path}
+            title={title}
+            date={date}
+            excerpt={excerpt}
+          />
+        ),
+      )}
     </div>
   );
 };
