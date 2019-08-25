@@ -7,12 +7,16 @@ import './posts-list-item.scss';
 
 const PostListItem = ({ childImageSharp, path, title, date, excerpt }) => (
   <div className="posts-list-item">
-    <Img {...childImageSharp} />
     <Link to={path}>
-      <h2>{title}</h2>
+      <Img {...childImageSharp} />
     </Link>
-    <p>{date}</p>
-    <p>{excerpt}</p>
+    <div className="posts-list-item__content">
+      <Link to={path} className="posts-list-item__title-link">
+        <h2>{title}</h2>
+      </Link>
+      <p>{date}</p>
+      <p>{excerpt}</p>
+    </div>
   </div>
 );
 

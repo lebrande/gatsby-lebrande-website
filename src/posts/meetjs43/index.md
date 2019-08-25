@@ -1,7 +1,7 @@
 ---
 title: 'React Native z Perspektywy Front-Endu - meet.js #43 Poznań - nagranie video'
 date: '2018-05-21'
-featuredImage: './meetjs43.jpeg'
+featuredImage: './meetjs43-cover.jpg'
 path: '/meetjs43-react-native'
 ---
 

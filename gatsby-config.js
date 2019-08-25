@@ -6,6 +6,23 @@ module.exports = {
     siteUrl: `http://lebrande.pl`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Hind`,
+            variants: [`700`],
+            subsets: [`latin-ext`],
+          },
+          {
+            family: `Open Sans`,
+            variants: [`400`, `700`],
+            subsets: [`latin-ext`],
+          },
+        ],
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,

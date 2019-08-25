@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import './header.scss';
 
 const Header = ({ siteTitle }) => (
-  <header className="header__wrapper">
+  <header className="header">
     <div className="header__container">
       <h1 className="header__title">
         <Link to="/" className="header__title-link">
