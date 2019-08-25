@@ -1,12 +1,13 @@
-import React from "react"
-import { graphql } from "gatsby"
-import Layout from "../components/Layout/Layout"
-import Img from "gatsby-image"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
+import Layout from '../components/Layout/Layout';
+import Img from 'gatsby-image';
 
-export default ({ data }) => {
-  let post = data.markdownRemark
+const Post = ({ data }) => {
+  let post = data.markdownRemark;
 
-  let featuredImgFluid = post.frontmatter.featuredImage.childImageSharp.fluid
+  let featuredImgFluid = post.frontmatter.featuredImage.childImageSharp.fluid;
 
   return (
     <Layout>
@@ -16,8 +17,14 @@ export default ({ data }) => {
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>
     </Layout>
-  )
-}
+  );
+};
+
+Post.propTypes = {
+  data: PropTypes.object,
+};
+
+export default Post;
 
 export const query = graphql`
   query PostQuery($path: String!) {
@@ -37,4 +44,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

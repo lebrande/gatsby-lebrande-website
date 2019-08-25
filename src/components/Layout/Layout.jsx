@@ -10,8 +10,10 @@ import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import Header from '../Header/Header';
-import './general.scss';
+import '../../sass/general.scss';
+import '../../sass/embedVideo-container.scss';
 import './layout.scss';
+import Footer from '../Footer/Footer';
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -29,10 +31,8 @@ const Layout = ({ children }) => {
       <Header siteTitle={data.site.siteMetadata.title} />
       <div className="layout__container">
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()} Lebrande
-        </footer>
       </div>
+      <Footer />
     </>
   );
 };
